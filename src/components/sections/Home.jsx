@@ -13,7 +13,7 @@ export const Home = () => {
           </h1>
 
           <p className="text-grey-400 text-lg mb-8 max-w-lg mx-auto">
-            I'm a java developerwho loves crafting clean, scalable web
+            I'm a java developer who loves crafting clean, scalable web
             applications. My goal is to build high performance java
             applications.
           </p>
