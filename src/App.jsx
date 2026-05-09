@@ -18,6 +18,8 @@ import { Contact } from "./components/sections/Contact";
 import { Login } from "./pages/Login";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { NewArticle } from "./pages/admin/NewArticle";
+import { AdminPosts } from "./pages/admin/AdminPosts";
+import { Posts } from "./pages/Posts";
 import { Portfolio } from "./pages/Portfolio";
 
 function App() {
@@ -28,13 +30,14 @@ function App() {
           {/* Public routes */}
           <Route path="/" element={<Portfolio />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/posts" element={<Posts />} />
 
           {/* Protected admin routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<AdminDashboard />} />
-            {/* <Route path="/admin/new-article" element={<NewArticle />} /> */}
+            <Route path="/admin/posts" element={<AdminPosts />} />
+            <Route path="/admin/new-article" element={<NewArticle />} />
           </Route>
-          <Route path="/admin/new-article" element={<NewArticle />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

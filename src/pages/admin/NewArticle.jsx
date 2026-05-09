@@ -8,7 +8,7 @@ export function NewArticle() {
     title: "",
     summary: "",
     content: "",
-    tags: "",
+    tags: [],
     published: false, 
   });
   const [saving, setSaving] = useState(false);
@@ -35,7 +35,7 @@ export function NewArticle() {
       await axios.post("http://localhost:8080/api/articles", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      navigate("/admin");
+      navigate("/my-posts");
     } catch (err) {
       setError("Failed to save article. Please try again.");
     } finally {
@@ -73,7 +73,7 @@ export function NewArticle() {
                 type="checkbox"
                 name="published"
                 checked={form.published}
-                onChange={handleChange}
+                onChange={handleChange} 
                 className="sr-only"
               />
               <div
