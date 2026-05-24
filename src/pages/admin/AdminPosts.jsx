@@ -17,7 +17,7 @@ export function AdminPosts() {
   const fetchPosts = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:8080/api/articles", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/articles`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(res.data);
@@ -32,7 +32,7 @@ export function AdminPosts() {
     if (!confirm("Delete this post?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8080/api/articles/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/articles/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts((prev) => prev.filter((p) => p.id !== id));
@@ -77,7 +77,7 @@ export function AdminPosts() {
             </p>
           </div>
           <Link
-            to="/admin/new-article"
+            to="/admin/new-post"
             className="bg-white text-black px-5 py-2 rounded font-semibold text-sm hover:bg-gray-200 transition-colors"
           >
             + New Post

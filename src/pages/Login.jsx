@@ -14,17 +14,13 @@ export function Login() {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("http://localhost:8080/api/auth/login", {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {
         username,
         password,
       });
-      // Spring Boot returns: { token, username, role }
-      login(
-        { username: res.data.username, role: res.data.role },
-        res.data.token,
-      );
+      login({ username }, res.data.token);
       navigate("/admin");
-    } catch (err) {
+    } catch {
       setError("Invalid credentials");
     }
   };

@@ -17,11 +17,11 @@ export function AdminDashboard() {
   const fetchArticles = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:8080/api/articles", {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/articles`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setArticles(res.data);
-    } catch (err) {
+    } catch {
       setError("Failed to load articles.");
     } finally {
       setLoading(false);
@@ -32,11 +32,11 @@ export function AdminDashboard() {
     if (!confirm("Delete this article?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8080/api/articles/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/articles/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setArticles((prev) => prev.filter((a) => a.id !== id));
-    } catch (err) {
+    } catch {
       setError("Failed to delete article.");
     }
   };
@@ -82,7 +82,7 @@ export function AdminDashboard() {
             </p>
           </div>
           <Link
-            to="/admin/new-article"
+            to="/admin/new-post"
             className="bg-white text-black px-5 py-2 rounded font-semibold text-sm hover:bg-gray-200 transition-colors"
           >
             + New Article
@@ -108,7 +108,7 @@ export function AdminDashboard() {
           <div className="text-center py-24 border border-dashed border-gray-800 rounded-lg">
             <p className="text-gray-500 mb-4">No articles yet.</p>
             <Link
-              to="/admin/new-article"
+              to="/admin/new-post"
               className="text-sm text-blue-400 hover:text-blue-300 underline"
             >
               Create your first article

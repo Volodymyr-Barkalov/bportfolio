@@ -5,6 +5,7 @@ import { MobileMenu } from "../components/MobileMenu";
 import { Home } from "../components/sections/Home";
 import { About } from "../components/sections/About";
 import { Contact } from "../components/sections/Contact";
+import { PostsSection } from "../components/sections/PostsSection";
 
 export function Portfolio() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,6 +21,7 @@ export function Portfolio() {
         <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Home />
         <About />
+        <PostsSection />
         <Contact />
       </div>
     </>

@@ -9,7 +9,7 @@ export function Posts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/articles")
+      .get(`${import.meta.env.VITE_API_URL}/articles`)
       .then((res) => setPosts(res.data))
       .catch(() => setError("Failed to load posts."))
       .finally(() => setLoading(false));
