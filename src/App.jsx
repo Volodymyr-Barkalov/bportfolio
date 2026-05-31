@@ -21,6 +21,7 @@ import { AdminPosts } from "./pages/admin/AdminPosts";
 import { Posts } from "./pages/Posts";
 import { PostDetail } from "./pages/PostDetail";
 import { Portfolio } from "./pages/Portfolio";
+import { AgeCalculator } from "./pages/AgeCalculator";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/age-calculator" element={<AgeCalculator />} />
 
           {/* Protected admin routes */}
           <Route element={<ProtectedRoute />}>
