@@ -10,7 +10,7 @@ export const PostsSection = () => {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/articles`)
-      .then((res) => setPosts(res.data))
+      .then((res) => setPosts(Array.isArray(res.data) ? res.data : res.data.articles ?? res.data.data ?? []))
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
