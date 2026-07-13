@@ -16,7 +16,14 @@ No test suite is configured — `npm run lint` is the only automated check.
 
 ## Architecture
 
-React 19 SPA with Vite, React Router v7, and Tailwind CSS v4. Deployed to GitHub Pages. Expects a Node.js backend at `http://localhost:8080` for admin/auth features.
+React 19 SPA with Vite, React Router v7, and Tailwind CSS v4. This repo is the frontend only.
+
+Stack around it:
+- **Frontend** — this repo, built by Vite, deployed to GitHub Pages at `vobar.dev` (apex domain via `public/CNAME`).
+- **Backend** — `vobar-backend`, a **Java** API deployed on **Railway**. Separate repo.
+- **Database** — Postgres on **Neon**.
+
+The API base URL comes from `VITE_API_URL` (see Environment variables). In local dev the Java backend runs at `http://localhost:8080/api`.
 
 ### Routing (`src/App.jsx`)
 
@@ -39,7 +46,7 @@ Composes: `LoadingScreen` → `Home` → `About` → `Contact` (all in `src/comp
 
 ### Admin panel (`src/pages/admin/`)
 
-`AdminDashboard` lists/deletes articles from the backend. `NewArticle` creates/edits articles (title, summary, content, tags, published toggle). Both hit `http://localhost:8080/api/...` — this URL is hardcoded, not env-configured. The backend is Node.js (not Spring Boot).
+`AdminDashboard` lists/deletes articles from the backend. `NewArticle` creates/edits articles (title, summary, content, tags, published toggle). Both call the Java backend via `${import.meta.env.VITE_API_URL}/articles`.
 
 ### Styling conventions
 
@@ -50,15 +57,22 @@ Composes: `LoadingScreen` → `Home` → `About` → `Contact` (all in `src/comp
 
 ### Environment variables
 
-EmailJS keys are in `.env` (committed):
-```
-VITE_SERVICE_ID
-VITE_TEMPLATE_ID
-VITE_PUBLIC_KEY
-```
+| Variable | Purpose |
+|---|---|
+| `VITE_API_URL` | Base URL of the Java backend, **including** the `/api` prefix. Dev: `http://localhost:8080/api`. Prod: the Railway URL. |
+| `VITE_SERVICE_ID` | EmailJS — contact form |
+| `VITE_TEMPLATE_ID` | EmailJS — contact form |
+| `VITE_PUBLIC_KEY` | EmailJS — contact form |
+
+Every `VITE_`-prefixed variable is **inlined into the production bundle at build time and is therefore public**. Real secrets belong on the Java backend, never here.
+
+- **Local dev** — copy `.env.example` to `.env` and fill it in. `.env` is gitignored.
+- **Deployed build** — the GitHub Actions workflow injects them into the build step. `VITE_API_URL` is a **repository variable**; the EmailJS trio are **repository secrets**. They must be repo-scoped, not scoped to the `github-pages` environment, because the `build` job does not declare that environment and would read them as empty strings.
+
+If a `VITE_` var is missing at build time it does not fail — Vite compiles it to the literal string `undefined`, shipping requests to `undefined/articles`. Check the bundle if the deployed site can't reach the API.
 
 ## Known issues
 
 - `/admin/new-article` route is not wrapped in `ProtectedRoute`
-- Backend API base URL (`http://localhost:8080`) is hardcoded across admin components — should move to an env variable
 - `NewArticle` form state includes a `tags` field but the input is not rendered in the UI
+- EmailJS keys ship in the public bundle and the domain allowlist that would constrain them is a paid EmailJS feature. Long-term fix: move the contact form behind a `/api/contact` endpoint on the Java backend so the mail credential stays server-side.

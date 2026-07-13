@@ -30,4 +30,11 @@ export default [
       ],
     },
   },
+  {
+    // Config files run in Node, not the browser.
+    files: ['vite.config.js', 'eslint.config.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 ]

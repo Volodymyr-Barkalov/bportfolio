@@ -25,3 +25,5 @@ dist-ssr
 *.sln
 *.sw?
 dev_notes/*
+
+local-notes.txt
