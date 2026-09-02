@@ -20,8 +20,10 @@ React 19 SPA with Vite, React Router v7, and Tailwind CSS v4. This repo is the f
 
 Stack around it:
 - **Frontend** — this repo, built by Vite, deployed to GitHub Pages at `vobar.dev` (apex domain via `public/CNAME`).
-- **Backend** — `vobar-backend`, a **Java** API deployed on **Railway**. Separate repo.
-- **Database** — Postgres on **Neon**.
+- **Backend** — `vobar-backend`, a **Java** API self-hosted on the home server, behind
+  Traefik at `https://api.vobar.dev`. Separate repo.
+- **Database** — MongoDB 7.0 in Docker on the same server, reachable only over the
+  internal `backend` network. Article ids are ObjectId **strings**, not numbers.
 
 The API base URL comes from `VITE_API_URL` (see Environment variables). In local dev the Java backend runs at `http://localhost:8080/api`.
 
@@ -59,7 +61,7 @@ Composes: `LoadingScreen` → `Home` → `About` → `Contact` (all in `src/comp
 
 | Variable | Purpose |
 |---|---|
-| `VITE_API_URL` | Base URL of the Java backend, **including** the `/api` prefix. Dev: `http://localhost:8080/api`. Prod: the Railway URL. |
+| `VITE_API_URL` | Base URL of the Java backend, **including** the `/api` prefix. Dev: `http://localhost:8080/api`. Prod: `https://api.vobar.dev/api`. |
 | `VITE_SERVICE_ID` | EmailJS — contact form |
 | `VITE_TEMPLATE_ID` | EmailJS — contact form |
 | `VITE_PUBLIC_KEY` | EmailJS — contact form |
