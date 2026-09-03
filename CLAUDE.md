@@ -35,6 +35,7 @@ The API base URL comes from `VITE_API_URL` (see Environment variables). In local
 | `/login` | `Login` | public |
 | `/posts` | `Posts` | public |
 | `/posts/:id` | `PostDetail` | public |
+| `/playground` | `Playground` | public |
 | `/age-calculator` | `AgeCalculator` | public |
 | `/admin` | `AdminDashboard` | `ProtectedRoute` |
 | `/admin/posts` | `AdminPosts` | `ProtectedRoute` |
@@ -51,6 +52,14 @@ JWT token and user object stored in `localStorage`. `login()`/`logout()` functio
 ### Public portfolio (`src/pages/Portfolio.jsx`)
 
 Composes: `LoadingScreen` → `Home` → `About` → `Contact` (all in `src/components/sections/`). The Projects section exists but is hidden from nav.
+
+### Playground (`src/data/playground.js`)
+
+Pet projects are a static list, not an API resource. Adding one means a single
+entry in `src/data/playground.js`; `PlaygroundCard` renders it as an internal
+`Link`, or as an external `<a target="_blank">` when `path` starts with `http`.
+Rendered by `PlaygroundSection` on the portfolio (first 4) and by the
+`/playground` page (all).
 
 ### Admin panel (`src/pages/admin/`)
 

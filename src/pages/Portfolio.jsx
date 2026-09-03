@@ -6,6 +6,7 @@ import { Home } from "../components/sections/Home";
 import { About } from "../components/sections/About";
 import { Contact } from "../components/sections/Contact";
 import { PostsSection } from "../components/sections/PostsSection";
+import { PlaygroundSection } from "../components/sections/PlaygroundSection";
 
 export function Portfolio() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +23,7 @@ export function Portfolio() {
         <Home />
         <About />
         <PostsSection />
+        <PlaygroundSection />
         <Contact />
       </div>
     </>
