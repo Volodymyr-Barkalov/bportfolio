@@ -38,7 +38,6 @@ The API base URL comes from `VITE_API_URL` (see Environment variables). In local
 | `/playground` | `Playground` | public |
 | `/age-calculator` | `AgeCalculator` | public |
 | `/admin` | `AdminDashboard` | `ProtectedRoute` |
-| `/admin/posts` | `AdminPosts` | `ProtectedRoute` |
 | `/admin/new-post` | `NewPost` | `ProtectedRoute` |
 | `/admin/edit-post/:id` | `NewPost` | `ProtectedRoute` |
 | `*` | `NotFound` | public |
@@ -63,7 +62,7 @@ Rendered by `PlaygroundSection` on the portfolio (first 4) and by the
 
 ### Admin panel (`src/pages/admin/`)
 
-`AdminDashboard` lists/deletes articles from the backend. `NewPost` creates/edits articles (title, summary, content, tags, published toggle). Both call the Java backend via `${import.meta.env.VITE_API_URL}/articles`.
+`AdminDashboard` lists posts with their tags and publish state, links each to a public view or the editor, and deletes them. `NewPost` creates/edits articles (title, summary, content, tags, published toggle). Both call the Java backend via `${import.meta.env.VITE_API_URL}/articles`.
 
 ### Styling conventions
 

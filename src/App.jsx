@@ -17,7 +17,6 @@ import { Contact } from "./components/sections/Contact";
 import { Login } from "./pages/Login";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { NewPost } from "./pages/admin/NewPost";
-import { AdminPosts } from "./pages/admin/AdminPosts";
 import { Posts } from "./pages/Posts";
 import { PostDetail } from "./pages/PostDetail";
 import { Portfolio } from "./pages/Portfolio";
@@ -41,7 +40,6 @@ function App() {
           {/* Protected admin routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/posts" element={<AdminPosts />} />
             <Route path="/admin/new-post" element={<NewPost />} />
             <Route path="/admin/edit-post/:id" element={<NewPost />} />
           </Route>

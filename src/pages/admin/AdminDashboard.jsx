@@ -145,9 +145,29 @@ export function AdminDashboard() {
                     >
                       {post.published ? "Published" : "Draft"}
                     </span>
+                    {post.tags?.length > 0 && (
+                      <div className="flex gap-1.5">
+                        {post.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs px-2 py-0.5 bg-gray-800 border border-gray-700 rounded-full text-gray-500"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="flex items-center gap-3 ml-6">
+                <div className="flex items-center gap-4 ml-6 shrink-0">
+                  <Link
+                    to={`/posts/${post.id}`}
+                    className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View
+                  </Link>
                   <Link
                     to={`/admin/edit-post/${post.id}`}
                     className="text-sm text-gray-400 hover:text-white transition-colors"
