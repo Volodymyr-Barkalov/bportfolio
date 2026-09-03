@@ -16,7 +16,7 @@ import { Contact } from "./components/sections/Contact";
 // New pages
 import { Login } from "./pages/Login";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
-import { NewArticle } from "./pages/admin/NewArticle";
+import { NewPost } from "./pages/admin/NewPost";
 import { AdminPosts } from "./pages/admin/AdminPosts";
 import { Posts } from "./pages/Posts";
 import { PostDetail } from "./pages/PostDetail";
@@ -42,8 +42,8 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/posts" element={<AdminPosts />} />
-            <Route path="/admin/new-post" element={<NewArticle />} />
-            <Route path="/admin/edit-post/:id" element={<NewArticle />} />
+            <Route path="/admin/new-post" element={<NewPost />} />
+            <Route path="/admin/edit-post/:id" element={<NewPost />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

@@ -39,8 +39,8 @@ The API base URL comes from `VITE_API_URL` (see Environment variables). In local
 | `/age-calculator` | `AgeCalculator` | public |
 | `/admin` | `AdminDashboard` | `ProtectedRoute` |
 | `/admin/posts` | `AdminPosts` | `ProtectedRoute` |
-| `/admin/new-post` | `NewArticle` | `ProtectedRoute` |
-| `/admin/edit-post/:id` | `NewArticle` | `ProtectedRoute` |
+| `/admin/new-post` | `NewPost` | `ProtectedRoute` |
+| `/admin/edit-post/:id` | `NewPost` | `ProtectedRoute` |
 | `*` | `NotFound` | public |
 
 `ProtectedRoute` reads from `AuthContext` — if no user, redirects to `/login`.
@@ -63,7 +63,7 @@ Rendered by `PlaygroundSection` on the portfolio (first 4) and by the
 
 ### Admin panel (`src/pages/admin/`)
 
-`AdminDashboard` lists/deletes articles from the backend. `NewArticle` creates/edits articles (title, summary, content, tags, published toggle). Both call the Java backend via `${import.meta.env.VITE_API_URL}/articles`.
+`AdminDashboard` lists/deletes articles from the backend. `NewPost` creates/edits articles (title, summary, content, tags, published toggle). Both call the Java backend via `${import.meta.env.VITE_API_URL}/articles`.
 
 ### Styling conventions
 
@@ -90,5 +90,5 @@ If a `VITE_` var is missing at build time it does not fail — Vite compiles it 
 
 ## Known issues
 
-- `NewArticle` form state includes a `tags` field but the input is not rendered in the UI
+- `NewPost` form state includes a `tags` field but the input is not rendered in the UI
 - EmailJS keys ship in the public bundle and the domain allowlist that would constrain them is a paid EmailJS feature. Long-term fix: move the contact form behind a `/api/contact` endpoint on the Java backend so the mail credential stays server-side.
