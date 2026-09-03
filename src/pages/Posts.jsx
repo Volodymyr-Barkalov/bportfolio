@@ -25,7 +25,12 @@ export function Posts() {
         >
           vobar<span className="text-blue-500">.dev</span>
         </Link>
-        <span className="text-sm text-gray-500">Posts</span>
+        <Link
+          to="/"
+          className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
+        >
+          ← Back to portfolio
+        </Link>
       </div>
 
       <div className="max-w-3xl mx-auto px-8 py-16">

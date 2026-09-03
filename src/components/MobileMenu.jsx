@@ -1,5 +1,8 @@
-export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
+export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
+    const { user, logout } = useAuth();
 
     return (
         <div
@@ -71,6 +74,47 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }) => {
                 onClick={() => setMenuOpen(false)}>
                 Contact
             </a>
+
+            {user ? (
+                <>
+                    <Link
+                        to="/admin"
+                        className={`text-2xl font-semibold text-blue-400 my-4 transform transition-transform duration-300
+                ${menuOpen
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-5"
+                            }
+                `}
+                        onClick={() => setMenuOpen(false)}>
+                        Admin
+                    </Link>
+                    <button
+                        className={`text-2xl font-semibold text-gray-500 my-4 transform transition-transform duration-300 cursor-pointer
+                ${menuOpen
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-5"
+                            }
+                `}
+                        onClick={() => {
+                            logout();
+                            setMenuOpen(false);
+                        }}>
+                        Logout
+                    </button>
+                </>
+            ) : (
+                <Link
+                    to="/login"
+                    className={`text-2xl font-semibold text-white my-4 transform transition-transform duration-300
+                ${menuOpen
+                            ? "opacity-100 translate-y-0"
+                            : "opacity-0 translate-y-5"
+                        }
+                `}
+                    onClick={() => setMenuOpen(false)}>
+                    Login
+                </Link>
+            )}
 
         </div>
     );

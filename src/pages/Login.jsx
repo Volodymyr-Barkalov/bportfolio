@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
@@ -7,8 +7,13 @@ export function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useAuth();
+  const { user, login } = useAuth();
   const navigate = useNavigate();
+
+  // Already signed in — no reason to show the form again
+  if (user) {
+    return <Navigate to="/admin" replace />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +33,13 @@ export function Login() {
   return (
     <div className="min-h-screen bg-black text-gray-100 flex items-center justify-center">
       <div className="bg-gray-900 p-8 rounded-lg w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-6">Admin Login</h2>
+        <Link
+          to="/"
+          className="text-gray-500 hover:text-gray-300 text-sm transition-colors"
+        >
+          ← Back to portfolio
+        </Link>
+        <h2 className="text-2xl font-bold mt-4 mb-6">Admin Login</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
