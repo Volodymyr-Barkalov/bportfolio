@@ -51,7 +51,7 @@ JWT token and user object stored in `localStorage`. `login()`/`logout()` functio
 
 ### Public portfolio (`src/pages/Portfolio.jsx`)
 
-Composes: `LoadingScreen` → `Home` → `About` → `Contact` (all in `src/components/sections/`). The Projects section exists but is hidden from nav.
+Composes: `LoadingScreen` → `Home` → `About` → `PostsSection` → `PlaygroundSection` → `Contact` (all in `src/components/sections/`).
 
 ### Playground (`src/data/playground.js`)
 
