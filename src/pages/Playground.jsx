@@ -12,7 +12,7 @@ export function Playground() {
         <span className="text-sm text-gray-500">Playground</span>
       </div>
 
-      <div className="max-w-5xl mx-auto px-8 py-16">
+      <div className="max-w-3xl mx-auto px-8 py-16">
         <h1 className="text-4xl font-bold text-white mb-2">Playground</h1>
         <p className="text-gray-500 mb-12">
           Small pet projects, built for the fun of it.
