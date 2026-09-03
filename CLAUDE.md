@@ -33,8 +33,14 @@ The API base URL comes from `VITE_API_URL` (see Environment variables). In local
 |---|---|---|
 | `/` | `Portfolio` | public |
 | `/login` | `Login` | public |
+| `/posts` | `Posts` | public |
+| `/posts/:id` | `PostDetail` | public |
+| `/age-calculator` | `AgeCalculator` | public |
 | `/admin` | `AdminDashboard` | `ProtectedRoute` |
-| `/admin/new-article` | `NewArticle` | **unprotected** (known issue) |
+| `/admin/posts` | `AdminPosts` | `ProtectedRoute` |
+| `/admin/new-post` | `NewArticle` | `ProtectedRoute` |
+| `/admin/edit-post/:id` | `NewArticle` | `ProtectedRoute` |
+| `*` | `NotFound` | public |
 
 `ProtectedRoute` reads from `AuthContext` — if no user, redirects to `/login`.
 
@@ -75,6 +81,5 @@ If a `VITE_` var is missing at build time it does not fail — Vite compiles it 
 
 ## Known issues
 
-- `/admin/new-article` route is not wrapped in `ProtectedRoute`
 - `NewArticle` form state includes a `tags` field but the input is not rendered in the UI
 - EmailJS keys ship in the public bundle and the domain allowlist that would constrain them is a paid EmailJS feature. Long-term fix: move the contact form behind a `/api/contact` endpoint on the Java backend so the mail credential stays server-side.

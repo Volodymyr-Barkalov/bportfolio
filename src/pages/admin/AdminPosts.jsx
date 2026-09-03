@@ -98,7 +98,7 @@ export function AdminPosts() {
           <div className="text-center py-24 border border-dashed border-gray-800 rounded-lg">
             <p className="text-gray-500 mb-4">No posts yet.</p>
             <Link
-              to="/admin/new-article"
+              to="/admin/new-post"
               className="text-sm text-blue-400 hover:text-blue-300 underline"
             >
               Create your first post
@@ -156,7 +156,7 @@ export function AdminPosts() {
                     View
                   </Link>
                   <Link
-                    to={`/admin/edit-article/${post.id}`}
+                    to={`/admin/edit-post/${post.id}`}
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     Edit

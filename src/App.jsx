@@ -22,6 +22,7 @@ import { Posts } from "./pages/Posts";
 import { PostDetail } from "./pages/PostDetail";
 import { Portfolio } from "./pages/Portfolio";
 import { AgeCalculator } from "./pages/AgeCalculator";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   return (
@@ -39,9 +40,11 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/posts" element={<AdminPosts />} />
-            <Route path="/admin/new-article" element={<NewArticle />} />
-            <Route path="/admin/edit-article/:id" element={<NewArticle />} />
+            <Route path="/admin/new-post" element={<NewArticle />} />
+            <Route path="/admin/edit-post/:id" element={<NewArticle />} />
           </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

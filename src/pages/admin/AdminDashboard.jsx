@@ -149,7 +149,7 @@ export function AdminDashboard() {
                 </div>
                 <div className="flex items-center gap-3 ml-6">
                   <Link
-                    to={`/admin/edit-article/${article.id}`}
+                    to={`/admin/edit-post/${article.id}`}
                     className="text-sm text-gray-400 hover:text-white transition-colors"
                   >
                     Edit
